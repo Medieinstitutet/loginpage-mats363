@@ -55,7 +55,7 @@ function initPage() {
         console.log("Inloggad");
         renderLoggedInPage();
     } else {
-        renderFailedToLogIn();
+        renderLoginPage();
     }
 }
 function getUsers() {
@@ -85,7 +85,16 @@ function renderLoggedInPage() {
 function renderFailedToLogIn() {
     // Renderar "felaktigt användarnamn"
     login.append(userNameInput, passWordInput, btn);
+    userNameInput.value = "";
+    passWordInput.value = "";
     section.innerHTML = "Du har angett fel användarnamn eller lösenord";
+    localStorage.setItem("loginStatus", "False");
+}
+
+function renderLoginPage() {
+    // Renderar "felaktigt användarnamn"
+    login.append(userNameInput, passWordInput, btn);
+    section.innerHTML = "Välkommen! Logga in för att ta del av alla feta samplingar";
     localStorage.setItem("loginStatus", "False");
 }
 
@@ -116,7 +125,7 @@ function checkLogin() {
         renderFailedToLogIn();
         console.log("Inte inloggad");
         //localStorage.setItem("Inloggad", "Nej")
-        break;
+        //break;
     }
 
     }
