@@ -76,6 +76,7 @@ function renderLoggedInPage() {
     login.innerHTML = "Välkommen!";
     localStorage.setItem("loginStatus", "True");
     login.append(btnLogOut);
+
     // Renderar en inloggad vy (både header och section)
 }
 
@@ -114,7 +115,11 @@ function checkLogin() {
     for (i = 0; i < userList.length; i++) {
         if (userList[i].name == userName && userList[i].password == passWord) {
         renderLoggedInPage();
-        console.log("Inloggad");        
+        console.log("Inloggad");
+        let activeUser = userList[i].name;
+        localStorage.setItem("Active user", JSON.stringify(activeUser));
+        console.log(activeUser);
+        
         break;
     } else {
         renderFailedToLogIn();
